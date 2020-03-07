@@ -160,7 +160,7 @@ int sx1250_calibrate(uint8_t rf_chain, uint32_t freq_hz) {
     sx1250_read_command(rf_chain, GET_STATUS, buff, 1);
 
     /* Run calibration */
-    if ((freq_hz > 430E6) && (freq_hz < 440E6)) {
+    if ((freq_hz > 430E6) && (freq_hz < 450E6)) {
         buff[0] = 0x6B;
         buff[1] = 0x6F;
     } else if ((freq_hz > 470E6) && (freq_hz < 510E6)) {

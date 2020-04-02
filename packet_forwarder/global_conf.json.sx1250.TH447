@@ -1,0 +1,121 @@
+/*
+
+    Copyright 2020 @ EmOne
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+    and associated documentation files (the "Software"), to deal in the Software without restriction,
+    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+    subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies
+    or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+    AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+{
+    "SX130x_conf": {
+        "spidev_path": "/dev/spidev0.0",
+        "lorawan_public": false,
+        "clksrc": 0,
+        "antenna_gain": 0, /* antenna gain, in dBi */
+        "full_duplex": false,
+        "precision_timestamp": {
+            "enable": false,
+            "max_ts_metrics": 255,
+            "nb_symbols": 1
+        },
+        "radio_0": {
+            "enable": true,
+            "type": "SX1250",
+            "single_input_mode": true,
+            "freq": 448000000,
+            "rssi_offset": -207.0,
+            "rssi_tcomp": {"coeff_a": 0, "coeff_b": 0, "coeff_c": 20.41, "coeff_d": 2162.56, "coeff_e": 0},
+            "tx_enable": true,
+            "tx_freq_min": 447512500,
+            "tx_freq_max": 448962500,
+            "tx_gain_lut":[
+                {"rf_power": -6, "pa_gain": 0, "pwr_idx":  0},
+                {"rf_power": -3, "pa_gain": 0, "pwr_idx":  1},
+                {"rf_power":  0, "pa_gain": 0, "pwr_idx":  2},
+                {"rf_power":  3, "pa_gain": 1, "pwr_idx":  3},
+                {"rf_power":  6, "pa_gain": 1, "pwr_idx":  4},
+                {"rf_power": 10, "pa_gain": 1, "pwr_idx":  5},
+                {"rf_power": 11, "pa_gain": 1, "pwr_idx":  6},
+                {"rf_power": 12, "pa_gain": 2, "pwr_idx":  7}	/*,
+                {"rf_power": 13, "pa_gain": 1, "pwr_idx":  8},
+                {"rf_power": 14, "pa_gain": 2, "pwr_idx":  9},
+                {"rf_power": 16, "pa_gain": 2, "pwr_idx": 10},
+                {"rf_power": 20, "pa_gain": 3, "pwr_idx": 11},
+                {"rf_power": 23, "pa_gain": 3, "pwr_idx": 12},
+                {"rf_power": 25, "pa_gain": 3, "pwr_idx": 13},
+                {"rf_power": 26, "pa_gain": 3, "pwr_idx": 14},
+                {"rf_power": 27, "pa_gain": 3, "pwr_idx": 15} 	*/
+            ]
+        },
+        "radio_1": {
+            "enable": true,
+            "type": "SX1250",
+            "single_input_mode": true,
+            "freq": 448000000,
+            "rssi_offset": -207.0,
+            "rssi_tcomp": {"coeff_a": 0, "coeff_b": 0, "coeff_c": 20.41, "coeff_d": 2162.56, "coeff_e": 0},
+            "tx_enable": false
+        },
+        "chan_multiSF_0": {"enable": true, "radio": 0, "if": -325000},	//447.675 MHz
+        "chan_multiSF_1": {"enable": true, "radio": 0, "if": -125000},	//447.875 MHz
+        "chan_multiSF_2": {"enable": true, "radio": 0, "if":  175000},	//448.175 MHz
+        "chan_multiSF_3": {"enable": true, "radio": 0, "if":  375000},	//448.375 MHz
+        "chan_multiSF_4": {"enable": true, "radio": 1, "if": -435000},	//447.565 MHz
+        "chan_multiSF_5": {"enable": true, "radio": 1, "if":  265000},	//448.265 MHz
+        "chan_multiSF_6": {"enable": true, "radio": 1, "if":  465000},	//448.465 MHz
+        "chan_multiSF_7": {"enable": true, "radio": 1, "if":  665000},	//448.665 MHz
+        "chan_Lora_std":  {"enable": true, "radio": 0, "if": -335000, "bandwidth": 125000, "spread_factor": 12,	//447.665 MHz
+                           "implicit_hdr": false, "implicit_payload_length": 17, "implicit_crc_en": false, "implicit_coderate": 1},
+        "chan_FSK":       {"enable": true, "radio": 1, "if": -335000, "bandwidth": 125000, "datarate": 50000}	//447.665 MHz
+    },
+
+    "gateway_conf": {
+        "gateway_ID": "AA555A0000000000",
+        /* change with default server address/ports */
+        "server_address": "localhost",
+        "serv_port_up": 1730,
+        "serv_port_down": 1730,
+        /* adjust the following parameters for your network */
+        "keepalive_interval": 10,
+        "stat_interval": 30,
+        "push_timeout_ms": 100,
+        /* forward only valid packets */
+        "forward_crc_valid": true,
+        "forward_crc_error": false,
+        "forward_crc_disabled": false,
+        /* GPS configuration */
+        "gps_tty_path": "/dev/ttyS0",
+        /* GPS reference coordinates */
+        "ref_latitude": 0.0,
+        "ref_longitude": 0.0,
+        "ref_altitude": 0,
+        /* Beaconing parameters */
+        "beacon_period": 0,
+        "beacon_freq_hz": 434665000,
+        "beacon_datarate": 9,
+        "beacon_bw_hz": 125000,
+        "beacon_power": 10,
+        "beacon_infodesc": 0
+    },
+
+    "debug_conf": {
+        "ref_payload":[
+            {"id": "0xCAFE1234"},
+            {"id": "0xCAFE2345"}
+        ],
+        "log_file": "loragw_hal.log"
+    }
+}
